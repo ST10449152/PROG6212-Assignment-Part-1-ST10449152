@@ -69,3 +69,8 @@ ALTER TABLE Users
 ADD CONSTRAINT CK_Users_Role
 CHECK (Role IN ('Organiser', 'Participant'));
 GO
+
+ALTER TABLE Venues
+ADD CONSTRAINT CK_Venues_Capacity
+CHECK (Capacity > 0);
+GO
