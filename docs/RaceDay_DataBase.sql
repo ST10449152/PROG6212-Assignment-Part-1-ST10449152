@@ -84,3 +84,8 @@ ALTER TABLE Registrations
 ADD CONSTRAINT UQ_Registrations_User_Event
 UNIQUE (UserID, EventID);
 GO
+
+ALTER TABLE Registrations
+ADD CONSTRAINT CK_Registrations_Status
+CHECK (RegistrationStatus IN ('Registered', 'Cancelled', 'Completed'));
+GO
