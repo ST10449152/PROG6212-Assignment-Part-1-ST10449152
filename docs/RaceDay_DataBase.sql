@@ -74,3 +74,13 @@ ALTER TABLE Venues
 ADD CONSTRAINT CK_Venues_Capacity
 CHECK (Capacity > 0);
 GO
+
+ALTER TABLE Events
+ADD CONSTRAINT CK_Events_Time
+CHECK (EndTime > StartTime);
+GO
+
+ALTER TABLE Registrations
+ADD CONSTRAINT UQ_Registrations_User_Event
+UNIQUE (UserID, EventID);
+GO
