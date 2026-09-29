@@ -26,3 +26,19 @@ CREATE TABLE Venues
     CreatedAt DATETIME2 NOT NULL DEFAULT GETDATE()
 );
 GO
+
+CREATE TABLE Events
+(
+    EventID INT IDENTITY(1,1) PRIMARY KEY,
+    EventName NVARCHAR(100) NOT NULL,
+    EventDate DATE NOT NULL,
+    StartTime TIME NOT NULL,
+    EndTime TIME NOT NULL,
+    VenueID INT NOT NULL,
+    Description NVARCHAR(500),
+    
+    CONSTRAINT FK_Events_Venues
+        FOREIGN KEY (VenueID)
+        REFERENCES Venues(VenueID)
+);
+GO
