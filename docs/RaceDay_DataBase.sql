@@ -60,3 +60,12 @@ CREATE TABLE Registrations
         REFERENCES Events(EventID)
 );
 GO
+
+ALTER TABLE Users
+ADD CONSTRAINT UQ_Users_Email UNIQUE (Email);
+GO
+
+ALTER TABLE Users
+ADD CONSTRAINT CK_Users_Role
+CHECK (Role IN ('Organiser', 'Participant'));
+GO
