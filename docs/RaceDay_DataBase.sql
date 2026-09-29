@@ -101,3 +101,44 @@ CHECK (
     Email LIKE '%_@_%._%'
 );
 GO
+
+CREATE INDEX IX_Users_Email
+ON Users(Email);
+GO
+
+CREATE INDEX IX_Events_EventDate
+ON Events(EventDate);
+GO
+
+CREATE INDEX IX_Events_VenueID
+ON Events(VenueID);
+GO
+
+CREATE INDEX IX_Registrations_EventID
+ON Registrations(EventID);
+GO
+
+INSERT INTO Users
+    (FirstName, LastName, Email, PasswordHash, Role)
+VALUES
+    ('Thabo', 'Mokoena', 'thabo@raceday.co.za', 'DemoHash001', 'Organiser'),
+    ('Lerato', 'Dlamini', 'lerato@example.com', 'DemoHash002', 'Participant'),
+    ('Jason', 'Naidoo', 'jason@example.com', 'DemoHash003', 'Participant');
+GO
+
+INSERT INTO Venues
+    (VenueName, Address, Capacity, ContactNumber)
+VALUES
+    ('Johannesburg Race Track', 'Johannesburg, Gauteng', 5000, '0111234567'),
+    ('Pretoria Sports Arena', 'Pretoria, Gauteng', 3500, '0127654321');
+GO
+
+INSERT INTO Events
+    (EventName, EventDate, StartTime, EndTime, VenueID, Description)
+VALUES
+    ('Johannesburg 10K', '2026-11-15', '08:00', '12:00', 1,
+     'Annual Johannesburg 10 kilometre road race'),
+
+    ('Pretoria City Run', '2026-12-05', '07:00', '11:00', 2,
+     'Community running event through Pretoria');
+GO
