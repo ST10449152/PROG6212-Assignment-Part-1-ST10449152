@@ -142,3 +142,49 @@ VALUES
     ('Pretoria City Run', '2026-12-05', '07:00', '11:00', 2,
      'Community running event through Pretoria');
 GO
+
+INSERT INTO Registrations
+    (UserID, EventID, RegistrationStatus)
+VALUES
+    (2, 1, 'Registered'),
+    (3, 2, 'Registered');
+GO
+
+SELECT *
+FROM Users;
+GO
+
+-- Display all venues
+SELECT *
+FROM Venues;
+GO
+
+-- Display all events with their venues
+SELECT
+    e.EventID,
+    e.EventName,
+    e.EventDate,
+    e.StartTime,
+    e.EndTime,
+    v.VenueName
+FROM Events e
+INNER JOIN Venues v
+    ON e.VenueID = v.VenueID;
+GO
+
+-- Display registrations with participant and event details
+SELECT
+    r.RegistrationID,
+    u.FirstName + ' ' + u.LastName AS Participant,
+    e.EventName,
+    v.VenueName,
+    r.RegistrationDate,
+    r.RegistrationStatus
+FROM Registrations r
+INNER JOIN Users u
+    ON r.UserID = u.UserID
+INNER JOIN Events e
+    ON r.EventID = e.EventID
+INNER JOIN Venues v
+    ON e.VenueID = v.VenueID;
+GO
