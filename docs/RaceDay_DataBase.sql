@@ -42,3 +42,21 @@ CREATE TABLE Events
         REFERENCES Venues(VenueID)
 );
 GO
+
+CREATE TABLE Registrations
+(
+    RegistrationID INT IDENTITY(1,1) PRIMARY KEY,
+    UserID INT NOT NULL,
+    EventID INT NOT NULL,
+    RegistrationDate DATETIME2 NOT NULL DEFAULT GETDATE(),
+    RegistrationStatus NVARCHAR(20) NOT NULL DEFAULT 'Registered',
+
+    CONSTRAINT FK_Registrations_Users
+        FOREIGN KEY (UserID)
+        REFERENCES Users(UserID),
+
+    CONSTRAINT FK_Registrations_Events
+        FOREIGN KEY (EventID)
+        REFERENCES Events(EventID)
+);
+GO
