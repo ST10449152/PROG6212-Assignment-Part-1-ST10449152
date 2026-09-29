@@ -89,3 +89,15 @@ ALTER TABLE Registrations
 ADD CONSTRAINT CK_Registrations_Status
 CHECK (RegistrationStatus IN ('Registered', 'Cancelled', 'Completed'));
 GO
+
+ALTER TABLE Events
+ADD CONSTRAINT CK_Events_Description
+CHECK (Description IS NULL OR LEN(Description) >= 10);
+GO
+
+ALTER TABLE Users
+ADD CONSTRAINT CK_Users_Email
+CHECK (
+    Email LIKE '%_@_%._%'
+);
+GO
